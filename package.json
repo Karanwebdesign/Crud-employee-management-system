@@ -1,0 +1,14 @@
+{
+  "name": "employee-management-system",
+  "version": "1.0.0",
+  "description": "WeIntern Task 2 - CRUD Employee Management System",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "sql.js": "^1.15.1"
+  }
+}

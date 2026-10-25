@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Employee Management System for managing employee records.">
+  <title>Employee Management System</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand-mark">E<span>M</span></div>
+      <div class="brand-copy">
+        <strong>PeopleDesk</strong>
+        <span>Employee portal</span>
+      </div>
+      <div class="sidebar-label">WORKSPACE</div>
+      <a class="side-link active" href="#dashboard"><span class="side-icon">▦</span> Employees</a>
+      <div class="sidebar-bottom">
+        <div class="profile-avatar">HR</div>
+        <div><strong>HR Admin</strong><span>Administrator</span></div>
+      </div>
+    </aside>
+
+    <main class="main-content" id="dashboard">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">WORKSPACE / PEOPLE</p>
+          <h1>Employee management</h1>
+          <p class="subheading">Manage your people, all in one place.</p>
+        </div>
+        <button class="primary-button" id="addEmployeeBtn">＋ Add employee</button>
+      </header>
+
+      <section class="stats-grid" aria-label="Employee summary">
+        <article class="stat-card">
+          <div class="stat-top"><span>Total employees</span><span class="stat-icon purple">♙</span></div>
+          <strong id="totalEmployees">0</strong><small>People in your workspace</small>
+        </article>
+        <article class="stat-card">
+          <div class="stat-top"><span>Departments</span><span class="stat-icon green">▤</span></div>
+          <strong id="totalDepartments">0</strong><small>Unique departments</small>
+        </article>
+        <article class="stat-card">
+          <div class="stat-top"><span>Monthly payroll</span><span class="stat-icon orange">₹</span></div>
+          <strong id="monthlyPayroll">₹0</strong><small>Based on listed salaries</small>
+        </article>
+      </section>
+
+      <section class="table-card">
+        <div class="table-heading">
+          <div><h2>All employees</h2><p>View, search, edit, or remove employee records.</p></div>
+          <div class="table-actions">
+            <label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Search employees..." aria-label="Search employees"></label>
+            <select id="sortSelect" aria-label="Sort employees">
+              <option value="name:asc">Name A–Z</option>
+              <option value="name:desc">Name Z–A</option>
+              <option value="department:asc">Department</option>
+              <option value="salary:desc">Salary high–low</option>
+              <option value="join_date:desc">Newest joined</option>
+            </select>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>EMPLOYEE</th><th>DEPARTMENT</th><th>ROLE</th><th>SALARY / MONTH</th><th>JOIN DATE</th><th>ACTIONS</th></tr></thead>
+            <tbody id="employeeRows"><tr><td colspan="6" class="loading">Loading employees…</td></tr></tbody>
+          </table>
+        </div>
+        <div class="table-footer"><span id="recordCount">0 employees</span><span>PeopleDesk · Employee directory</span></div>
+      </section>
+      <p class="page-note">People first. Better work, together.</p>
+    </main>
+  </div>
+
+  <dialog id="employeeDialog">
+    <form id="employeeForm" class="employee-form">
+      <div class="modal-header">
+        <div><p class="eyebrow">EMPLOYEE DETAILS</p><h2 id="dialogTitle">Add employee</h2></div>
+        <button type="button" class="close-button" id="closeDialog" aria-label="Close dialog">×</button>
+      </div>
+      <input type="hidden" id="employeeId">
+      <label>Full name <input id="name" name="name" required maxlength="100" placeholder="e.g. Amandeep Kaur"></label>
+      <div class="form-row">
+        <label>Department
+          <select id="department" name="department" required>
+            <option value="">Select department</option><option>Engineering</option><option>Design</option><option>Marketing</option><option>Human Resources</option><option>Finance</option><option>Sales</option><option>Operations</option>
+          </select>
+        </label>
+        <label>Job role <input id="role" name="role" required maxlength="100" placeholder="e.g. Web Developer"></label>
+      </div>
+      <div class="form-row">
+        <label>Monthly salary (₹) <input id="salary" name="salary" type="number" required min="0" step="0.01" placeholder="25000"></label>
+        <label>Join date <input id="join_date" name="join_date" type="date" required></label>
+      </div>
+      <p class="form-error" id="formError" role="alert"></p>
+      <div class="modal-actions"><button type="button" class="secondary-button" id="cancelDialog">Cancel</button><button type="submit" class="primary-button" id="saveEmployeeBtn">Save employee</button></div>
+    </form>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>

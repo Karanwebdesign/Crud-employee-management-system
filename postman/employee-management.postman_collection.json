@@ -1,0 +1,74 @@
+{
+  "info": {
+    "name": "Employee Management System API",
+    "description": "CRUD API tests for the local Employee Management System. Start the server on port 3000 before running.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000"
+    },
+    {
+      "key": "employeeId",
+      "value": "1"
+    }
+  ],
+  "item": [
+    {
+      "name": "List employees",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/employees"
+      }
+    },
+    {
+      "name": "Create employee",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Amandeep Kaur\",\n  \"department\": \"Engineering\",\n  \"role\": \"Web Developer\",\n  \"salary\": 25000,\n  \"join_date\": \"2026-10-01\"\n}"
+        },
+        "url": "{{baseUrl}}/api/employees"
+      }
+    },
+    {
+      "name": "Get employee by ID",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/employees/{{employeeId}}"
+      }
+    },
+    {
+      "name": "Update employee",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Amandeep Kaur\",\n  \"department\": \"Engineering\",\n  \"role\": \"Frontend Developer\",\n  \"salary\": 28000,\n  \"join_date\": \"2026-10-01\"\n}"
+        },
+        "url": "{{baseUrl}}/api/employees/{{employeeId}}"
+      }
+    },
+    {
+      "name": "Delete employee",
+      "request": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/api/employees/{{employeeId}}"
+      }
+    }
+  ]
+}
